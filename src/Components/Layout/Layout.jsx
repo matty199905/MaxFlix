@@ -1,10 +1,11 @@
 import React from 'react'
+import { LayoutWrapper } from './LayoutStyled'
 
 const Layout = ({children}) => {
   return (
-    <div className='container d-flex d-flex-column justify-content-start align-items-center'>
-      {children}
-    </div>
+<LayoutWrapper>
+  {children}
+</LayoutWrapper>
   )
 }
 

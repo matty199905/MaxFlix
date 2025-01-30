@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyles = createGlobalStyle`
 html{
     scroll-behavior: smooth;
-    width: 100vw;
+width: 100vw;
 }
 
 body{
@@ -11,8 +11,7 @@ body{
     padding: 0px;
     box-sizing: border-box;
     color: white;
-    background-color: #000038;
-    ;
+    background:linear-gradient(to bottom,black,black , #222222,rgb(45, 45, 45),rgb(58, 58, 58)   );
     overflow-x: hidden;
 }
 

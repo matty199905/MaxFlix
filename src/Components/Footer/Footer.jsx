@@ -5,22 +5,22 @@ import { FooterContainer } from './FooterStyled'
 
 const Footer = () => {
   return (
-    <FooterContainer className="container-fluid fixed-bottom pt-4">
+    <FooterContainer>
 
-      <div className="container">
+       <div className="container">
         <div className="row">
           <div className="col
-          justify-content-start align-items-baseline ">
+          justify-content-start align-items-baseline mt-3">
 
-          <span class="navbar-brand fw-bolder text-warning fs-1">
-          MAXFLIX
-        </span>
+            <span className="navbar-brand fw-bolder text-warning fs-1">
+              MAXFLIX
+            </span>
 
-        <p className=' h6 '>Todas tus películas en un solo lugar.</p>
+            <p className=' h6 '>Todas tus películas en un solo lugar.</p>
 
           </div>
         </div>
-      </div>
+      </div> 
     </FooterContainer>
   )
 }
