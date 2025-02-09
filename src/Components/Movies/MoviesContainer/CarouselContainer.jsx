@@ -57,8 +57,7 @@ const CarouselContainer = ({ title, id }) => {
                         <div className="row">
                             <div className="col mb-5">
 
-                                <div className="carousel slide" id={id}
-                                    data-bs-ride='carousel'>
+                                <div className="carousel slide" id={id}data-bs-ride="carousel">
 
                                     <div className="carousel-inner">
 

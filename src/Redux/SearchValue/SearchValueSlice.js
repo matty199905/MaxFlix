@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
 
+
     value: null,
 
 }
@@ -16,18 +17,20 @@ export const SearchValueSlice = createSlice({
 
 setValue: (state, action) => {
 
+
     
     return {
         ...state,
         value: action.payload,
     }
-}
+},
+
     }
 
 })
 
 
 
-export const {setValue} = SearchValueSlice.actions
+export const {setValue, setResults} = SearchValueSlice.actions
 
 export default SearchValueSlice.reducer

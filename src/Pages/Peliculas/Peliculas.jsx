@@ -10,7 +10,7 @@ const Peliculas = () => {
   return (
 <PeliculasWrapper>
 
-<MoviesContainer title={activeFilter?.name ? `Ver Peliculas de ${activeFilter.name} en MaxFlix` : 'Ver Peliculas en MaxFlix'} peliculasPage={true} />
+<MoviesContainer title={activeFilter?.name ? `Ver Peliculas de ${activeFilter.name} en MaxFlix` : 'Ver Peliculas en MaxFlix'} peliculasPage={true} home={false} />
     
 
 

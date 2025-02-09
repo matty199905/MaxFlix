@@ -9,7 +9,7 @@ import { Link, useLocation } from 'react-router-dom'
 const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) => {
 
     const location = useLocation()
-    const cardData = location?.state
+    const cardData = location?.state?.data
 
     const [videos, setVideos] = useState()
     const [showVideo, setShowVideo] = useState(null)
@@ -18,8 +18,8 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
 
     const link = providers?.link
-    const typeURL = type
 
+console.log(location);
 
 
 
@@ -31,7 +31,8 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
     }, [location.pathname])
 
     useEffect(() => {
-        getWatchProviders(cardData?.id, typeURL).then((data) => setProviders(data?.ES || data?.US || data?.AR))
+        getWatchProviders(cardData?.id).then((data) => setProviders(data?.ES || data?.US || data?.AR))
+        
     }, [location])
 
 
@@ -51,6 +52,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
     const officialTrailer = videos?.find((trailer) => { if (trailer?.name.includes('Official') || trailer?.name.includes('Trailer')) { return trailer } }) || videos?.find((trailer) => { if (!trailer?.name.includes('Trailer')) { return videos[0] } })
 
+console.log(cardData);
 
 
 
@@ -86,7 +88,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                             <h1>{title}</h1>
                                             <h2 className='h4'>{year}</h2>
 
-                                            <Link state={{ ...randomMovie }} to={`${type}/${title}`} className='btn btn-md btn-primary ps-3 pe-3 mt-3'>
+                                            <Link state={{ ...randomMovie }} to={`/movie/${title}`} className='btn btn-md btn-primary ps-3 pe-3 mt-3'>
                                                 VER MÁS
                                             </Link>
 
@@ -138,7 +140,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                 <div className="container ps-0 mb-4 mt-4">
                                     <div className="row">
                                         <div className="col">
-                                            <h1>{title}</h1>
+                                            <h1>{title || cardData?.original_name}</h1>
                                             <h2 className='h4'>{year}</h2>
                                         </div>
                                     </div>
@@ -148,8 +150,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                     <div className="row">
                                         <div className="col-5 ">
                                             <p className='fs-5 fw-light p-4 rounded-4' style={{ backdropFilter: 'blur(5px)', background: '#3f3f3f3b' }}><span className='h5'>Overview:</span> {overview}</p>
-                                            {
-                                                nextSoon === false ?
+                                           
 
                                                     <button className='btn btn-lg btn-primary ps-3 pe-3 mt-4'>
                                                        <a href={link} target='_blank' rel='noopener noreferrer' className='text-light'>
@@ -157,12 +158,8 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                                         </a> 
                                                     </button>
 
-                                                    :
-
-                                                    <button className='btn btn-lg btn-danger ps-3 pe-3 mt-4 disabled'>
-                                                        PRÓXIMAMENTE
-                                                    </button>
-                                            }
+                                            
+                                            
                                             {
                                                 videos ? <button onClick={() => { setShowVideo(true) }} className='btn btn-lg btn-warning text-light btn-outline ps-3 pe-3 mt-4 ms-4'>
                                                     TRAILER

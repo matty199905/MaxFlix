@@ -23,7 +23,7 @@ export const getDiscoverData = async(numberPage) => {
 
 
 
-export const getTvData = async(currentPage) => {
+export const getTvData = async(numberPage) => {
 
     const options = {
         method: 'GET',
@@ -34,7 +34,7 @@ export const getTvData = async(currentPage) => {
       };
       
     try {
-        const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${currentPage}&sort_by=popularity.desc`, options);
+        const response = await axios.get(`https://api.themoviedb.org/3/discover/tv?include_adult=false&include_null_first_air_dates=false&language=en-US&page=${numberPage}&sort_by=popularity.desc`, options);
 
         return response.data
 
@@ -160,7 +160,7 @@ export const getVideos = async(id) => {
 
 
 
-export const getWatchProviders = async(id, type) => {
+export const getWatchProviders = async(id) => {
 
 
   const options = {
@@ -173,14 +173,13 @@ export const getWatchProviders = async(id, type) => {
   
 
   try {
-      const response = await axios.get(`https://api.themoviedb.org/3/${type}/${id}/watch/providers`, options);
+      const response = await axios.get(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, options);
 
       return response.data.results
   }
   catch (err) { console.log(err) }
 
 }
-
 
 
 

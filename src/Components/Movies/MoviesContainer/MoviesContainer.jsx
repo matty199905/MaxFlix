@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import MovieCard from '../MovieCard/MovieCard'
 import BtnPages from '../../UI/BtnPages'
-import { getDiscoverData } from '../../../Axios/apiData'
+import { getDiscoverData, getMoviesGenres } from '../../../Axios/apiData'
 import { getTvData } from '../../../Axios/apiData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { selectedFilter } from '../../../Redux/Generos/generosSlice'
-import SearchComponent from '../SearchComponent/SearchComponent'
+import RenderSearched from '../RenderSearched/RenderSearched'
 
 
 
 const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage, seriesPage, searchPage }) => {
 
     const { activeFilter } = useSelector(state => state.generos)
-    const { value } = useSelector(state => state.searchValue)
 
     const dispatch = useDispatch()
 
@@ -25,7 +24,9 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
     const [series, setSeries] = useState([])
 
     const [currentPage, setCurrentPage] = useState()
-    const [totalPages, setTotalPages] = useState()
+    const [currentPageValue, setCurrentPageValue] = useState(1)
+    const [totalMovieResults, setTotalMoviesResults] = useState()
+    const [totalTvResults, setTotalTvResults] = useState()
 
     const [nextPage, setNextPage] = useState()
     const [prevPage, setPrevPage] = useState()
@@ -44,31 +45,83 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
     useEffect(() => {
-        getDiscoverData(currentPage ? currentPage : 1)?.then((data) => setTotalPages(data.total_pages)) ||
-            getTvData(currentPage ? currentPage : 1)?.then((data) => setTotalPages(data.total_pages))
+        getDiscoverData(currentPage ? currentPage : 1)?.then((data) => setTotalMoviesResults(data.total_pages))
     }, [currentPage])
 
+    useEffect(() => {
+        getTvData(currentPage ? currentPage : 1)?.then((data) => setTotalTvResults(data.total_pages))
+    }, [currentPage])
+
+
+    useEffect(() => {
+        setCurrentPageValue(currentPage);
+      }, [currentPage]);
+    
 
 
     const renderByFilter = () => {
 
-        if (activeFilter?.name === 'Drama' & page('/peliculas')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 18) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Action') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 28) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Adventure') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 12) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Crime') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 80) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Horror') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 27) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Romance') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 10749) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Science Fiction') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 878) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Thriller') { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == 53) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
+        const movieGenres = [
+            ['Action', 28],
+            ['Drama', 18],
+            ['Adventure', 12],
+            ['Crime', 80],
+            ['Horror', 27],
+            ['Romance', 10749],
+            ['Science Fiction', 878],
+            ['Thriller', 53]
+        ];
 
-        if (activeFilter?.name === 'Action & Adventure') { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 10759) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Drama' & page('/series')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 18) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Comedy') { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 35) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Reality') { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 10764) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Romance') { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 10749) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
-        if (activeFilter?.name === 'Sci-Fi & Fantasy') { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == 10765) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
+        const seriesGenres = [
+            ['Action & Adventure', 10759],
+            ['Drama', 18],
+            ['Comedy', 35],
+            ['Reality', 10764],
+            ['Romance', 10749],
+            ['Sci-Fi & Fantasy', 10765]
+        ]
+
+
+        const movieMatch = movieGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
+
+        const tvMatch = seriesGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
+
+
+
+        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
+
+
+
+        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
+
+
     }
 
+
+
+    const handlePageSubmit = (e) => {
+        e.preventDefault();
+        
+        // Convierte el valor ingresado a número entero
+        const newPage = parseInt(currentPageValue, 10);
+        
+        // Verifica que newPage sea un número válido
+        if (!isNaN(newPage)) {
+          try {
+            // Actualiza el estado usando el valor ingresado
+            setCurrentPage(newPage);
+          } catch (error) {
+            window.alert(error);
+          }
+        } else {
+          // Opcional: Notificar que el valor ingresado no es un número válido
+          window.alert("Por favor, ingresa un número válido.");
+        }
+      };
+
+
+
+console.log(currentPage);
 
 
 
@@ -95,7 +148,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                     </div>
 
 
-                    <div className="d-flex flex-row justify-content-start align-items-start flex-wrap">
+                    <div className="d-flex flex-row justify-content-center align-items-start flex-wrap">
 
 
 
@@ -103,8 +156,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                             peliculasHome &&
 
                             movies.map((movie, index) => {
-                                if (index <= 6) {
-                                    return <MovieCard {...movie} key={movie.id} size={'150px'} type={'movie'} />
+                                if (index <= 5) {
+                                    return <MovieCard {...movie} key={movie.id} size={'200px'} type={'movie'} />
                                 }
                             })
                         }
@@ -113,8 +166,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                             seriesHome &&
 
                             series.map((serie, index) => {
-                                if (index <= 6) {
-                                    return <MovieCard {...serie} key={serie.id} size={'150px'} type={'tv'} />
+                                if (index <= 5) {
+                                    return <MovieCard {...serie} key={serie.id} size={'200px'} type={'tv'} />
                                 }
                             })
 
@@ -137,7 +190,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                         }
 
                         {
-                            (peliculasPage || seriesPage) && renderByFilter()
+
+                            ((peliculasPage || seriesPage) && activeFilter) && renderByFilter()
 
                         }
 
@@ -154,7 +208,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
                         {
 
-                            searchPage && <SearchComponent value={value}/>
+                            searchPage && <RenderSearched />
 
 
                         }
@@ -183,13 +237,19 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                                 </BtnPages>
 
 
+                                <form onSubmit={handlePageSubmit}>
 
-                                <div className='btn text-light border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'>
+                                    <input className='btn text-light border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
+                                    value={currentPageValue}
+                                    onChange={(e) => setCurrentPageValue(e.target.value)} 
+                                    onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
+                                    
+                                     }}}
+                                    />
 
-                                    {currentPage}
 
-                                </div>
-
+                                   
+                                </form>
 
 
 
@@ -209,7 +269,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
                             <div className='d-flex'>
                                 <p className='fs-5 fw-light'>
-                                    Resultados: <span>{totalPages}</span>
+                                    Resultados: <span>{peliculasPage ? totalMovieResults : totalTvResults}</span>
                                 </p>
                             </div>
 

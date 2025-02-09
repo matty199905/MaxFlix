@@ -18,7 +18,7 @@ const Navbar = () => {
 
   const [moviesGenres, setMoviesGenres] = useState()
   const [seriesGenres, setSeriesGenres] = useState()
-  const [searchValue, setSearchValue] = useState()
+  const [searchValue, setSearchValue] = useState('')
 
 
   useEffect(() => { getMoviesGenres().then((data) => setMoviesGenres(data.genres.map((item) => item))) }, [])
@@ -28,7 +28,8 @@ const Navbar = () => {
 
   const page = (pathname) => { return location.pathname == pathname }
 
-  
+
+
 
   return (
 
@@ -127,8 +128,24 @@ const Navbar = () => {
           </ul>
 
           <form className="d-flex gap-2 w-50 m-3 ms-3" role="search">
-            <input className="form-control me-2 border-1 border-dark" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>setSearchValue(e.target.value)} onKeyDown={(e)=>{if(e.key === "Enter") {e.preventDefault(); dispatch(setValue(searchValue)) ; navigate('/searchResults')}}}></input>
-            <button onClick={()=>dispatch(setValue(searchValue))} className="btn btn-outline-warning fw-bolder border-2 text-light" type="submit"><Link to='/searchResults'>Buscar</Link></button>
+            
+            <input 
+            className="form-control me-2 border-1 border-dark" 
+            type="search" 
+            placeholder="Search" 
+            aria-label="Search"
+            onChange={(e)=> {setSearchValue(e.target.value)}}
+            onKeyDown={(e)=> {if(e.key === 'Enter') { e.preventDefault(); dispatch(setValue(searchValue)); navigate('/searchResults'); window.scroll(0,0) }}}/>
+
+           
+              <button 
+              className="btn btn-outline-warning fw-bolder border-2 text-light" 
+              type="submit"
+              onClick={(e)=>{e.preventDefault(); dispatch(setValue(searchValue)); window.scroll(0,0)}}>
+                 <Link to='/searchResults'>Buscar</Link>
+              </button>
+            
+
           </form>
 
         </div>
