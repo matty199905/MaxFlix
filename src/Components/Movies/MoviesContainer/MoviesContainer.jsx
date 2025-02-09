@@ -102,21 +102,23 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
     const handlePageSubmit = (e) => {
         e.preventDefault();
         
-        // Convierte el valor ingresado a número entero
-        const newPage = parseInt(currentPageValue, 10);
         
-        // Verifica que newPage sea un número válido
-        if (!isNaN(newPage)) {
+        const newPage = parseInt(currentPageValue, 10);
+        if(currentPage >= 501){window.alert("Numero de páginas excedido. Pruebe menos de 500."); return setCurrentPage(1)}
+       else if (!isNaN(newPage)) {
           try {
-            // Actualiza el estado usando el valor ingresado
+
             setCurrentPage(newPage);
           } catch (error) {
-            window.alert(error);
+            console.log(error);
+            
           }
         } else {
-          // Opcional: Notificar que el valor ingresado no es un número válido
+   
           window.alert("Por favor, ingresa un número válido.");
+          return setCurrentPage(1)
         }
+
       };
 
 
@@ -239,7 +241,7 @@ console.log(currentPage);
 
                                 <form onSubmit={handlePageSubmit}>
 
-                                    <input className='btn text-light border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
+                                    <input className='btn text-light btn-sm border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
                                     value={currentPageValue}
                                     onChange={(e) => setCurrentPageValue(e.target.value)} 
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
