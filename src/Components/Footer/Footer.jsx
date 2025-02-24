@@ -10,7 +10,7 @@ const Footer = () => {
        <div className="container">
         <div className="row">
           <div className="col
-          justify-content-start align-items-baseline mt-3">
+          justify-content-start align-items-baseline mt-3 d-flex flex-column gap-2" >
 
             <span className="navbar-brand fw-bolder text-warning fs-1">
               MAXFLIX

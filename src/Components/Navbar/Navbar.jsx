@@ -33,17 +33,79 @@ const Navbar = () => {
 
   return (
 
-    <nav className="navbar navbar-expand-md bg-primary fixed-top navbar-light ps-2 rounded-bottom-2"
+    <nav className="navbar navbar-expand-md bg-primary fixed-top navbar-light ps-2 rounded-bottom-2 "
       style={{
-        background: 'linear-gradient(to top, rgba(0, 0, 0, 0.25), rgba(0,0,0, 0.1), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0))'
+        background: 'linear-gradient(to top, rgba(0, 0, 0, 0.25), rgba(0,0,0, 0.1), rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0),rgba(0,0,0,0))',
+        minHeight: '80px',
+        width: '100vw',
       }}>
 
-      <div className="container-fluid d-flex align-items-end justify-content-between">
+      <div className="container-fluid d-flex align-items-center justify-content-between">
 
-        <NavLinkStyled to='/' className='navbar-brand fw-bolder text-warning fs-2'>
+        <div className='d-flex'>
+        <NavLinkStyled to='/' className='navbar-brand fw-bolder text-warning fs-2 mt-3'>
           MAXFLIX
         </NavLinkStyled>
 
+
+        {
+
+          page('/movie') &&
+
+
+          <li className='nav-item dropdown'>
+
+            <a className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
+              role='button'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'
+              id='dropdown-menu'
+            >GÉNEROS</a>
+
+            <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[0]))}>Acción</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[1]))}>Aventura</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[4]))}>Crimen</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[6]))}>Drama</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[10]))}>Terror</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[13]))}>Romance</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[14]))}>Sci-Fi</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[16]))}>Suspenso</NavLinkStyled></li>
+            </ul>
+          </li>
+
+
+
+
+        }
+
+        {
+
+          page('/tv') &&
+
+
+          <li className='nav-item dropdown'>
+
+            <a className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
+              role='button'
+              data-bs-toggle='dropdown'
+              aria-expanded='false'
+              id='dropdown-menu'
+            >GÉNEROS</a>
+
+            <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[0]))}>Accion & Aventura</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[2]))}>Comedia</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[3]))}>Crimen</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[5]))}>Drama</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[10]))}>Reality</NavLinkStyled></li>
+              <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[11]))}>Sci-Fi & Fantasy</NavLinkStyled></li>
+            </ul>
+          </li>
+
+
+        }
+</div>
 
 
         <button className='navbar-toggler border-0 ' type='button' data-bs-toggle='collapse'
@@ -67,84 +129,29 @@ const Navbar = () => {
 
             <li className='nav-item'><NavLinkStyled to='movie' className='nav-link text-light fw-medium'>PELICULAS</NavLinkStyled></li>
 
-            {
 
-              page('/movie') &&
-
-
-              <li className='nav-item dropdown'>
-
-                <a className='nav-link dropdown-toggle text-light fw-medium'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                  id='dropdown-menu'
-                >GÉNEROS</a>
-
-                <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[0]))}>Acción</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[1]))}>Aventura</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[4]))}>Crimen</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[6]))}>Drama</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[10]))}>Terror</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[13]))}>Romance</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[14]))}>Sci-Fi</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[16]))}>Suspenso</NavLinkStyled></li>
-                </ul>
-              </li>
-
-
-
-
-            }
-
-            {
-
-              page('/tv') &&
-
-
-              <li className='nav-item dropdown'>
-
-                <a className='nav-link dropdown-toggle text-light fw-medium'
-                  role='button'
-                  data-bs-toggle='dropdown'
-                  aria-expanded='false'
-                  id='dropdown-menu'
-                >GÉNEROS</a>
-
-                <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[0]))}>Accion & Aventura</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[2]))}>Comedia</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[3]))}>Crimen</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[5]))}>Drama</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[10]))}>Reality</NavLinkStyled></li>
-                  <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[11]))}>Sci-Fi & Fantasy</NavLinkStyled></li>
-                </ul>
-              </li>
-
-
-            }
 
           </ul>
 
           <form className="d-flex gap-2 w-50 m-3 ms-3" role="search">
-            
-            <input 
-            className="form-control me-2 border-1 border-dark" 
-            type="search" 
-            placeholder="Search" 
-            aria-label="Search"
-            onChange={(e)=> {setSearchValue(e.target.value)}}
-            onKeyDown={(e)=> {if(e.key === 'Enter') { e.preventDefault(); dispatch(setValue(searchValue)); navigate('/searchResults'); window.scroll(0,0) }}}/>
 
-           
-              <button 
-              className="btn btn-outline-warning fw-bolder border-2 text-light" 
+            <input
+              className="form-control me-2 border-1 border-dark"
+              style={{ minWidth: '160px' }}
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              onChange={(e) => { setSearchValue(e.target.value) }}
+              onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); dispatch(setValue(searchValue)); navigate('/searchResults'); window.scroll(0, 0) } }} />
+
+
+            <button
+              className="btn btn-outline-warning fw-bolder border-2 text-light"
               type="submit"
-              onClick={(e)=>{e.preventDefault(); dispatch(setValue(searchValue)); window.scroll(0,0)}}>
-                 <Link to='/searchResults'>Buscar</Link>
-              </button>
-            
+              onClick={(e) => { e.preventDefault(); dispatch(setValue(searchValue)); window.scroll(0, 0) }}>
+              <Link to='/searchResults'>Buscar</Link>
+            </button>
+
 
           </form>
 

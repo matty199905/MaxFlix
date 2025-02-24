@@ -8,39 +8,91 @@ const CarouselContainer = ({ title, id }) => {
 
     useEffect(() => { getUpComing().then((data) => setMovies(data.results)) }, [])
 
- 
+
+
+    const [itemsPerSlide, setItemsPerSlide] = useState(6);
+
+
+    useEffect(() => {
+
+        const handleResize = () => {
+            if (window.innerWidth <= 480) {
+                setItemsPerSlide(2)
+            }
+            else if (window.innerWidth <= 1200) {
+                setItemsPerSlide(4);
+            }
+            else if (window.innerWidth <= 1250) {
+                setItemsPerSlide(5)
+            }
+            else {
+                setItemsPerSlide(6);
+            }
+        };
+
+        handleResize();
+
+        window.addEventListener("resize", handleResize);
+
+      
+        return () => {
+            window.removeEventListener("resize", handleResize);
+
+            
+        }}, []);
+
+
+
+    const chunkMovies = (movies, size) => {
+        let chunks = [];
+        for (let i = 0; i < movies.length; i += size) {
+            chunks.push(movies.slice(i, i + size));
+        }
+        return chunks;
+    };
+  
+
+    const movieChunks = chunkMovies(movies, itemsPerSlide);
+
+
 
     return (
         <div className="container">
             <div className="row">
-                <div className="col-12 mb-5 ">
+                <div className="col-12 mb-5">
 
-                    <div className="container-fluid d-flex ">
+                    <div className="container-fluid d-flex">
                         <div className="row">
-                            <div className="col-12 d-flex justify-content-start align-items-center gap-4 mt-4">
-
-
+                            <div className="col-12 d-flex justify-content-start align-items-center gap-3 mt-4 mb-4">
 
                                 <h3 className="fs-4 fw-bold mt-2 ms-3">{title}</h3>
-
-
-
 
                                 <div className="container">
                                     <div className="row">
                                         <div className="col">
 
-                                            <button className="carousel-controls-prev bg-transparent border-0" style={{ scale: '0.7' }} type='button' data-bs-target={`#${id}`} data-bs-slide='prev'>
+                                           
+                                            <button
+                                                className="carousel-controls-prev bg-transparent border-0 m-0 p-0"
+                                                style={{ scale: '0.7' }}
+                                                type='button'
+                                                data-bs-target={`#${id}`}
+                                                data-bs-slide='prev'
+                                            >
                                                 <span className="carousel-control-prev-icon" aria-hidden='true'></span>
-                                                <span className="visually-hidden"></span>
+                                                <span className="visually-hidden">Previous</span>
                                             </button>
 
-
-
-
-                                            <button className="carousel-controls-next bg-transparent border-0 me-4" type='button' style={{ scale: '0.7' }} data-bs-target={`#${id}`} data-bs-slide='next'>
+                                            
+                                            <button
+                                                className="carousel-controls-next bg-transparent border-0 p-0 m-0"
+                                                type='button'
+                                                style={{ scale: '0.7' }}
+                                                data-bs-target={`#${id}`}
+                                                data-bs-slide='next'
+                                            >
                                                 <span className="carousel-control-next-icon" aria-hidden='true'></span>
-                                                <span className="visually-hidden"></span>
+                                                <span className="visually-hidden">Next</span>
                                             </button>
 
                                         </div>
@@ -52,86 +104,24 @@ const CarouselContainer = ({ title, id }) => {
 
                     </div>
 
-
-                    <div className="container">
-                        <div className="row">
-                            <div className="col mb-5">
-
-                                <div className="carousel slide" id={id}data-bs-ride="carousel">
-
-                                    <div className="carousel-inner">
-
-                                        <div className="container carousel-item active">
-                                            <div className="row">
-                                                <div className="col d-flex">
-
-                                                    {
-
-
-                                                        movies.map((movie, index) => {
-                                                            if (index < 6) {
-                                                                return <MovieCard {...movie} key={movie.id} size={'200px'} carousel={true} />
-                                                            }
-                                                        })
-                                                    }
-
-
-                                                </div>
+                    {/* Carrusel */}
+                    <div id={id} className="carousel slide" data-bs-ride="carousel">
+                        <div className="carousel-inner">
+                            {movieChunks.map((chunk, index) => (
+                                <div key={index} className={`carousel-item ${index === 0 ? "active" : ""}`}>
+                                    <div className="row justify-content-center">
+                                        {chunk.map((movie, i) => (
+                                            <div key={movie.id} className="col-auto movie-card">
+                                                <MovieCard {...movie} key={movie.id} size={'180px'} />
                                             </div>
-                                        </div>
-
-
-                                        <div className="container carousel-item">
-                                            <div className="row">
-                                                <div className="col d-flex">
-
-                                                    {
-
-                                                        movies.map((movie, index) => {
-                                                            if (index > 6 && index <= 12) {
-                                                                return <MovieCard {...movie} key={movie.id} size={'200px'}  carousel={true}/>
-                                                            }
-                                                        })
-                                                    }
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-
-                                        <div className="container carousel-item">
-                                            <div className="row">
-                                                <div className="col d-flex">
-
-                                                    {
-
-                                                        movies.map((movie, index) => {
-                                                            if (index > 12 && index <= 18) {
-                                                                return <MovieCard {...movie} key={movie.id} size={'200px'} carousel={true} />
-                                                            }
-                                                        })
-                                                    }
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        
-                                        
-
-
+                                        ))}
                                     </div>
-
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
-
-
 
                 </div>
-
             </div>
         </div>
 

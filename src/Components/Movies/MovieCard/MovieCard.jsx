@@ -2,7 +2,7 @@ import React from 'react'
 import { IMAGE_URL } from '../../../constants'
 import { CardLink } from './MovieCardStyled'
 import { useLocation } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+
 
 
 
@@ -104,7 +104,7 @@ const MovieCard = ({ size, title, release_date, poster_path, carousel, name, fir
 
                 <CardLink state={{data: {...data} }} to={`/proximamente/${title}`} className="card border-0 bg-transparent m-2" style={{ width: `${size}` }} onClick={() => { window.scroll(0, 0); }}>
 
-                    <div className="card-body p-0">
+                    <div className="card-body  p-0">
 
                         <img src={`${IMAGE_URL + poster_path}`} alt={title} className="card-img-top rounded-4" style={{height:'290px'}} />
 
