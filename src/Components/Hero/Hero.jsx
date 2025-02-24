@@ -40,7 +40,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
 
     const opts = {
-        height: '400px',
+        height: '380px',
         width: '100%',
         playerVars: {
             autoplay: 1,
@@ -147,17 +147,17 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
 
 
-                                                   <h1 className='mt-5 mb-5'>{title || cardData?.original_name}</h1>
+                                                   <h1 className='mt-5'>{title || cardData?.original_name}</h1>
                                                  
 
                                             {
 
                                                 showVideo === true ?
 
-                                                    <Youtube className='youtube' opts={opts} videoId={officialTrailer?.key} /> :
+                                                    <Youtube opts={opts} videoId={officialTrailer?.key} /> :
 
 
-                                                    <p className='overview fs-6 fw-light p-4 pt-3 rounded-4' style={{
+                                                    <p className='overview fs-6 fw-light p-4 pt-3 rounded-4 mt-0' style={{
                                                         backdropFilter: 'blur(5px)', background: '#3f3f3f3b',
                                                         maxHeight: '200px',
                                                         minWidth: '295px',
