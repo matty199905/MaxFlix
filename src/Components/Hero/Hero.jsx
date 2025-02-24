@@ -52,7 +52,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
     const officialTrailer = videos?.find((trailer) => { if (trailer?.name.includes('Official') || trailer?.name.includes('Trailer')) { return trailer } }) || videos?.find((trailer) => { if (!trailer?.name.includes('Trailer')) { return videos[0] } })
 
-    console.log(cardData);
+    console.log('cardData',cardData);
 
 
 
@@ -87,7 +87,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                     <div className="row">
                                         <div className="col">
                                             <h1>{title}</h1>
-                                            <h2 className='h4'>{year}</h2>
+                                            <h2 className='h5'>{year}</h2>
 
                                             <Link state={{ ...randomMovie }} to={`/movie/${title}`} className='btn btn-md btn-primary ps-3 pe-3 mt-3'>
                                                 VER MÁS
@@ -147,8 +147,8 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
 
 
-                                                   <h1 className='mt-5'>{title || cardData?.original_name}</h1>
-                                                   <h2 className='h4'>{year}</h2>
+                                                   <h1 className='mt-5 mb-5'>{title || cardData?.original_name}</h1>
+                                                 
 
                                             {
 
@@ -163,7 +163,8 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                                                         minWidth: '295px',
                                                         maxWidth:'500px',
                                                         overflowY: 'auto',
-                                                        overflowX: 'hidden'
+                                                        overflowX: 'hidden',
+                                                        marginTop:'-40px',
 
                                                     }}>
 

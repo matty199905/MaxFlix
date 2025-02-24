@@ -21,6 +21,7 @@ const Home = () => {
 
   useEffect(() => { setRandomMovie(movies[randomIndex]) }, [movies])
 
+console.log('randommovie',randomMovie);
 
 
 
