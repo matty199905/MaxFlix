@@ -20,7 +20,7 @@ export const CardLink = styled(Link)`
 } 
 .responsive-img{
     max-height: 120px;
-    max-width: 120px;
+    max-width: 90px;
 }
 
     .responsive-footer{
