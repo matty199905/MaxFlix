@@ -54,7 +54,13 @@ a {
     }
 
 
+.movie-container {
+  justify-content: center;
+  @media (max-width: 520px) {
+justify-content: start;
 
+  }
+}
 
 `
 

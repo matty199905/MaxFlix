@@ -16,12 +16,13 @@ const Home = () => {
 
   useEffect(() => { getPopular().then((data) => setMovies(data.results)) }, []);
 
-  const randomIndex = Math.floor(Math.random() * movies.length);
+  
 
 
-  useEffect(() => { setRandomMovie(movies[randomIndex]) }, [movies])
+  useEffect(() => {
+    const randomIndex = Math.floor(Math.random() * movies.length); 
+    setRandomMovie(movies[randomIndex]) }, [movies])
 
-console.log('randommovie',randomMovie);
 
 
 
@@ -38,11 +39,11 @@ console.log('randommovie',randomMovie);
         home={true}
         data={{ ...randomMovie }} />
 
-      <CarouselContainer title='Próximamente' id='carousel-peliculas' />
+      <CarouselContainer title='Próximamente' id='carousel-peliculas' carousel={true} />
 
-      <MoviesContainer title='Ver Películas en MaxFlix' home={true} peliculasHome={true} />
+      <MoviesContainer title='Ver Películas en MaxFlix' home={true} peliculasHome={true} carousel={false}   />
 
-      <MoviesContainer title='Ver Series en MaxFlix' home={true} seriesHome={true} />
+      <MoviesContainer title='Ver Series en MaxFlix' home={true} seriesHome={true} carousel={false}   />
 
 
 

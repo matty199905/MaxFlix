@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MovieCard from '../MovieCard/MovieCard'
 import { getUpComing } from '../../../Axios/apiData'
 
-const CarouselContainer = ({ title, id }) => {
+const CarouselContainer = ({ title, id, carousel }) => {
 
     const [movies, setMovies] = useState([])
 
@@ -16,17 +16,20 @@ const CarouselContainer = ({ title, id }) => {
     useEffect(() => {
 
         const handleResize = () => {
-            if (window.innerWidth <= 480) {
-                setItemsPerSlide(2)
+            if (window.innerWidth <= 520) {
+                setItemsPerSlide(1)
+            }
+            else if (window.innerWidth <= 990) {
+                setItemsPerSlide(2);
             }
             else if (window.innerWidth <= 1200) {
-                setItemsPerSlide(4);
+                setItemsPerSlide(3);
             }
             else if (window.innerWidth <= 1250) {
-                setItemsPerSlide(5)
+                setItemsPerSlide(4)
             }
             else {
-                setItemsPerSlide(6);
+                setItemsPerSlide(5);
             }
         };
 
@@ -112,7 +115,7 @@ const CarouselContainer = ({ title, id }) => {
                                     <div className="row justify-content-center">
                                         {chunk.map((movie, i) => (
                                             <div key={movie.id} className="col-auto movie-card">
-                                                <MovieCard {...movie} key={movie.id} size={'180px'} />
+                                                <MovieCard {...movie} key={movie.id} size={'220px'} carousel={carousel} />
                                             </div>
                                         ))}
                                     </div>

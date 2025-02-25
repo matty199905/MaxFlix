@@ -64,7 +64,7 @@ const RenderSearched = () => {
 
     }, [value]);
 
-    const render = resultsData.map((item) => <MovieCard {...item} key={item?.id} size={'200px'} />)
+    const render = resultsData.map((item) => <MovieCard {...item} key={item?.id} size={'220px'} />)
 
     if (loading) {return <div>Buscando resultados...</div>};
 

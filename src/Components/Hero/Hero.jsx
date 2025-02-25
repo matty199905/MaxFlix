@@ -19,7 +19,6 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
     const link = providers?.link
 
-    console.log(location);
 
 
 
@@ -52,7 +51,6 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
     const officialTrailer = videos?.find((trailer) => { if (trailer?.name.includes('Official') || trailer?.name.includes('Trailer')) { return trailer } }) || videos?.find((trailer) => { if (!trailer?.name.includes('Trailer')) { return videos[0] } })
 
-    console.log('cardData',cardData);
 
 
 

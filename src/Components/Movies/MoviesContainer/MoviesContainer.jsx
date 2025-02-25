@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import MovieCard from '../MovieCard/MovieCard'
 import BtnPages from '../../UI/BtnPages'
-import { getDiscoverData, getMoviesGenres } from '../../../Axios/apiData'
+import { getDiscoverData } from '../../../Axios/apiData'
 import { getTvData } from '../../../Axios/apiData'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
@@ -10,7 +10,7 @@ import RenderSearched from '../RenderSearched/RenderSearched'
 
 
 
-const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage, seriesPage, searchPage }) => {
+const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage, seriesPage, searchPage, carousel }) => {
 
     const { activeFilter } = useSelector(state => state.generos)
 
@@ -88,11 +88,11 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
 
-        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'200px'} /> } }) }) }
+        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'220px'} /> } }) }) }
 
 
 
-        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'200px'} /> } }) }) }
+        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'220px'} /> } }) }) }
 
 
     }
@@ -123,14 +123,13 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
 
-console.log(currentPage);
 
 
 
     return (
         <div className='container mt-5 mb-5'>
             <div className="row">
-                <div className="col-12 d-flex flex-column align-items-center">
+                <div className="col-12 d-flex flex-column align-items-center ">
 
                     <div className="container">
                         <div className="row">
@@ -150,7 +149,7 @@ console.log(currentPage);
                     </div>
 
 
-                    <div className="d-flex flex-row justify-content-center align-items-start flex-wrap">
+                    <div className="d-flex flex-row gap-3 align-items-start flex-wrap movie-container">
 
 
 
@@ -158,8 +157,8 @@ console.log(currentPage);
                             peliculasHome &&
 
                             movies.map((movie, index) => {
-                                if (index <= 5) {
-                                    return <MovieCard {...movie} key={movie.id} size={'200px'} type={'movie'} />
+                                if (index <= 4) {
+                                    return <MovieCard {...movie} key={movie.id} size={'220px'} type={'movie'} carousel={carousel} />
                                 }
                             })
                         }
@@ -168,8 +167,8 @@ console.log(currentPage);
                             seriesHome &&
 
                             series.map((serie, index) => {
-                                if (index <= 5) {
-                                    return <MovieCard {...serie} key={serie.id} size={'200px'} type={'tv'} />
+                                if (index <= 4) {
+                                    return <MovieCard {...serie} key={serie.id} size={'220px'} type={'tv'} carousel={carousel} />
                                 }
                             })
 
@@ -185,7 +184,7 @@ console.log(currentPage);
 
                                 movies.map((movie) => {
 
-                                    return <MovieCard {...movie} key={movie.id} size={'200px'} type={'movie'} />
+                                    return <MovieCard {...movie} key={movie.id} size={'220px'} type={'movie'} />
                                 }) : null
 
 
@@ -202,7 +201,7 @@ console.log(currentPage);
 
                             series.map((serie) => {
 
-                                return <MovieCard {...serie} key={serie.id} size={'200px'} type={'tv'} />
+                                return <MovieCard {...serie} key={serie.id} size={'220px'} type={'tv'} />
 
                             })
 
