@@ -7,6 +7,7 @@ export const CardLink = styled(Link)`
 @media (max-width: 515px) {
     .responsive{
         margin-bottom: -20px;
+        margin-left: -5px;
         display: flex;
         align-items: center;
         flex-direction: row;

@@ -241,6 +241,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                                 <form onSubmit={handlePageSubmit}>
 
                                     <input className='btn text-light btn-sm border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
+                                    style={{maxWidth:'100px'}}
                                     value={currentPageValue}
                                     onChange={(e) => setCurrentPageValue(e.target.value)} 
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
