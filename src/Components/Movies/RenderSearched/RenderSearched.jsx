@@ -42,7 +42,7 @@ const RenderSearched = () => {
                     }
                 }))
         
-                const results = responses.flat().filter(item => item?.title?.toLowerCase().includes(value.toLowerCase()));
+                const results = responses.flat().filter(item => item?.title?.toLowerCase().replace(/-/g, '').includes(value.toLowerCase()));
         
                 const uniqueResults = results.reduce((acc, item) => {
                     if (!acc.some(movie => movie.id === item.id)) {

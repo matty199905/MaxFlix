@@ -126,6 +126,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
 
+
     return (
         <div className='container mt-5 mb-5'>
             <div className="row">
@@ -167,10 +168,13 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                             seriesHome &&
 
                             series.map((serie, index) => {
+                               
+
                                 if (index <= 4) {
                                     return <MovieCard {...serie} key={serie.id} size={'220px'} type={'tv'} carousel={carousel} />
                                 }
                             })
+                            
 
 
 
@@ -241,7 +245,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                                 <form onSubmit={handlePageSubmit}>
 
                                     <input className='btn text-light btn-sm border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
-                                    style={{maxWidth:'100px'}}
+                                    style={{maxWidth:'1z00px'}}
                                     value={currentPageValue}
                                     onChange={(e) => setCurrentPageValue(e.target.value)} 
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
