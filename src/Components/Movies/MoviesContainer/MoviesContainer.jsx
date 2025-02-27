@@ -245,7 +245,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                                 <form onSubmit={handlePageSubmit}>
 
                                     <input className='btn text-light btn-sm border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
-                                    style={{maxWidth:'1z00px'}}
+                                    style={{maxWidth:'100px'}}
                                     value={currentPageValue}
                                     onChange={(e) => setCurrentPageValue(e.target.value)} 
                                     onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
@@ -273,9 +273,13 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
 
-                            <div className='d-flex'>
+                            <div className='d-flex flex-column align-items-center'>
+                                <p className='text-warning'>Ingrese Número de Página </p>
                                 <p className='fs-5 fw-light'>
-                                    Resultados: <span>{peliculasPage ? totalMovieResults : totalTvResults}</span>
+                                    { peliculasPage ?
+ `Resultado total de Películas: ${totalMovieResults}` : `Resultado total de Series: ${totalTvResults}`
+                                    }
+                                   
                                 </p>
                             </div>
 
