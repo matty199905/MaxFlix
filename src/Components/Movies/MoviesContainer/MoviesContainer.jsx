@@ -17,7 +17,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
     const dispatch = useDispatch()
 
     const location = useLocation()
-    const page = (pathname) => { return location.pathname == pathname }
+    const page = (pathname) => { return location.pathname === pathname }
 
 
     const [movies, setMovies] = useState([])
@@ -82,17 +82,17 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
         ]
 
 
-        const movieMatch = movieGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
+        const movieMatch = movieGenres.find((genres) =>  genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
 
-        const tvMatch = seriesGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
-
-
-
-        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id == movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'220px'} /> } }) }) }
+        const tvMatch = seriesGenres.find((genres) =>  genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
 
 
 
-        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id == tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'220px'} /> } }) }) }
+        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id === movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'220px'} /> } }) }) }
+
+
+
+        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id === tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'220px'} /> } }) }) }
 
 
     }
@@ -150,7 +150,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                     </div>
 
 
-                    <div className="d-flex flex-row gap-3 align-items-start flex-wrap movie-container w-100">
+                    <div className="d-flex me-1 flex-row gap-3 align-items-start flex-wrap movie-container w-100">
 
 
 
