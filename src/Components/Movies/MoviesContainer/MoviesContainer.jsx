@@ -150,7 +150,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                     </div>
 
 
-                    <div className="d-flex me-1 flex-row gap-3 align-items-start flex-wrap movie-container w-100">
+                    <div className="d-flex me-2 flex-row gap-3 align-items-start flex-wrap movie-container w-100">
 
 
 
