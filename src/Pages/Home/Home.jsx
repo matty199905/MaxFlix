@@ -27,11 +27,12 @@ const Home = () => {
 
 
 
+
   return (
 
     <HomeWrapper>
 
-      <Hero img={`url(${IMAGE_URL + randomMovie?.backdrop_path})`}
+      <Hero img={`url(${IMAGE_URL + randomMovie?.poster_path})`}
         title={randomMovie?.title}
         year={randomMovie?.release_date?.slice(0, 4)}
         overview={randomMovie?.overview}

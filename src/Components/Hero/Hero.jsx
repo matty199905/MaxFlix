@@ -6,7 +6,7 @@ import { Link, useLocation } from 'react-router-dom'
 
 
 
-const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) => {
+const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...randomMovie }) => {
 
     const location = useLocation()
     const cardData = location?.state?.data
@@ -18,8 +18,6 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
 
 
     const link = providers?.link
-
-
 
 
     useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [])
@@ -116,7 +114,7 @@ const Hero = ({ img, title, year, overview, id, home, type, ...randomMovie }) =>
                     style={{
                         height: '100vh',
                         marginTop: `-10px`,
-                        backgroundImage: img,
+                        backgroundImage: imgDinamicPage,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                         backgroundAttachment: 'fixed'

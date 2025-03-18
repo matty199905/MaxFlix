@@ -162,13 +162,10 @@ export const getVideos = async(id) => {
 
 export const getWatchProviders = async(id) => {
 
-
   const options = {
     method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
-    }
+    url: 'https://api.themoviedb.org/3/movie/movie_id/watch/providers',
+    headers: {accept: 'application/json'}
   };
   
 
@@ -180,6 +177,8 @@ export const getWatchProviders = async(id) => {
   catch (err) { console.log(err) }
 
 }
+
+
 
 
 
