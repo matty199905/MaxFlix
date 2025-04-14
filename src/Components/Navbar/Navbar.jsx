@@ -120,7 +120,7 @@ const Navbar = () => {
         </div>
 
 
-        <button className='d-flex align-self-end navbar-toggler border-0 ' type='button' data-bs-toggle='collapse'
+        <button className='navbar-toggler border-0 mt-3' type='button' data-bs-toggle='collapse'
           data-bs-target='#menu'
           aria-controls='menu'
           aria-expanded="false"
