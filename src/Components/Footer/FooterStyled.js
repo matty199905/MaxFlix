@@ -11,4 +11,5 @@ background: linear-gradient(#222222,black,black,black);
 p {
     opacity: 0.7;
 }
+
 `

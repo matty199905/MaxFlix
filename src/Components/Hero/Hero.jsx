@@ -19,6 +19,8 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
     const link = providers?.link
 
+    console.log(link);
+    
 
     useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [])
 
@@ -27,8 +29,30 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
         setNextSoon(nextSoonCheck)
     }, [location.pathname])
 
+
+
+
     useEffect(() => {
-        getWatchProviders(cardData?.id).then((data) => setProviders(data?.ES || data?.US || data?.AR))
+
+
+
+        const findProvider = (data) => {
+
+            if (data?.AR || data?.ES || data?.US) {
+                return data?.AR || data?.ES || data?.US
+            }
+
+            else {
+                const array = data ? Object.entries(data).map(([key, value]) =>
+                    value) : undefined
+
+                return data ? array[0] : undefined
+            }
+
+
+        }
+
+        getWatchProviders(type, cardData?.id).then((data) => setProviders(findProvider(data)))
 
     }, [location])
 
@@ -131,20 +155,20 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
                         <div className="row">
                             <div className="col-12 ">
 
-                              
-                                     
-                                       
-                              
+
+
+
+
 
                                 <div className="container">
                                     <div className="row ">
                                         <div className="col-5 d-flex flex-column gap-4"
-                                        style={{width:'100vw'}}>
+                                            style={{ width: '100vw' }}>
 
 
 
-                                                   <h1 className='mt-5'>{title || cardData?.original_name}</h1>
-                                                 
+                                            <h1 className='mt-5'>{title || cardData?.original_name}</h1>
+
 
                                             {
 
@@ -153,14 +177,14 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
                                                     <Youtube opts={opts} videoId={officialTrailer?.key} /> :
 
 
-                                                    <p className='overview fs-6 fw-light p-4 pt-3 rounded-4 mt-0' style={{
+                                                    <p className='overview fs-6 fw-light p-4 pt-3 rounded-4 mt-0 mb-0' style={{
                                                         backdropFilter: 'blur(5px)', background: '#3f3f3f3b',
                                                         maxHeight: '200px',
                                                         minWidth: '295px',
-                                                        maxWidth:'500px',
+                                                        maxWidth: '500px',
                                                         overflowY: 'auto',
                                                         overflowX: 'hidden',
-                                                        marginTop:'-40px',
+                                                        marginTop: '-40px',
 
                                                     }}>
 
@@ -170,13 +194,27 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
                                             }
 
-                                            <div className='d-flex gap-4' style={{marginTop:'-30px'}}>
-                                                <button className='btn btn-lg btn-primary ps-3 pe-3 mt-4'>
-                                                    <a href={link} target='_blank' rel='noopener noreferrer' className='text-light'>
-                                                        VER MÁS
-                                                    </a>
-                                                </button>
 
+
+
+
+
+                                            <div className='d-flex gap-4' style={{ marginTop: '-30px' }}>
+
+                                                { link ?
+
+                                                    <a href={link} target='_blank' rel='noopener noreferrer' className='text-light'>
+                                                        <button className='btn btn-lg btn-primary ps-3 pe-3 mt-4 +'>
+                                                            VER MÁS
+                                                        </button>
+                                                    </a>
+
+                                                    :
+
+                                                    <button className='btn btn-lg btn-danger ps-3 pe-3 mt-4 +'>
+                                                        NO DISPONIBLE
+                                                    </button>
+                                                }
 
 
                                                 {
@@ -190,7 +228,6 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
                                                 }
                                             </div>
-
 
 
 

@@ -3,7 +3,7 @@ import { NavLinkStyled } from './NavbarStyled';
 import { useDispatch } from 'react-redux'
 import { selectedFilter } from '../../Redux/Generos/generosSlice';
 import { getMoviesGenres, getSeriesGenres } from '../../Axios/apiData'
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { setValue } from '../../Redux/SearchValue/SearchValueSlice';
 import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min";
 
@@ -27,7 +27,7 @@ const Navbar = () => {
 
 
 
-  const page = (pathname) => { return location.pathname == pathname }
+  const page = (pathname) => { return location.pathname === pathname }
 
 
 
@@ -67,12 +67,12 @@ const Navbar = () => {
 
             <li className='nav-item dropdown'>
 
-              <a className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
+              <span className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
                 role='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
                 id='dropdown-menu'
-              >GÉNEROS</a>
+              >GÉNEROS</span>
 
               <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
                 <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(moviesGenres[0]))}>Acción</NavLinkStyled></li>
@@ -120,7 +120,7 @@ const Navbar = () => {
         </div>
 
 
-        <button className='navbar-toggler border-0 ' type='button' data-bs-toggle='collapse'
+        <button className='d-flex align-self-end navbar-toggler border-0 ' type='button' data-bs-toggle='collapse'
           data-bs-target='#menu'
           aria-controls='menu'
           aria-expanded="false"
