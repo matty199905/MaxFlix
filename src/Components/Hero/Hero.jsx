@@ -19,7 +19,7 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
     const link = providers?.link
 
-    console.log(link);
+    
     
 
     useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [])
@@ -54,7 +54,7 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
         getWatchProviders(type, cardData?.id).then((data) => setProviders(findProvider(data)))
 
-    }, [location])
+    }, [location.pathname])
 
 
 

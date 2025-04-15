@@ -29,7 +29,7 @@ const CarouselContainer = ({ title, id, carousel }) => {
                 setItemsPerSlide(4)
             }
             else {
-                setItemsPerSlide(5);
+                setItemsPerSlide(4);
             }
         };
 

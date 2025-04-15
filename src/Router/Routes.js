@@ -21,7 +21,7 @@ const RoutesApp = () => {
       <Route path='/:type/:dinamicTitle' element={<PaginaDinamica />} />
       <Route path='/searchResults' element={<SearchResults/>}/>
 
-      <Route path='/proximamente'>
+      <Route path='/movie/proximamente'>
         <Route index element={<CarouselContainer/>}/>
         <Route path=':proximamenteDinamicTitle' element={<PaginaDinamica/>} />
       </Route>

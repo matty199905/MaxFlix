@@ -20,6 +20,7 @@ const MovieCard = ({ size, title, release_date, poster_path, carousel, name, fir
 
 
 
+
     return (
 
         <>
@@ -66,18 +67,18 @@ const MovieCard = ({ size, title, release_date, poster_path, carousel, name, fir
             {
                 (page('/searchResults')) &&
 
-                <CardLink state={{ data: { ...data } }} to={`/movie/${title}`} className="card border-0 bg-transparent m-2" style={{ width: `${size}` }} onClick={() => { window.scroll(0, 0); }}>
+                <CardLink state={{ data: { ...data } }} to={`/${name ? 'tv' : 'movie'}/${name || title}`}className="card border-0 bg-transparent m-2" style={{ width: `${size}` }} onClick={() => { window.scroll(0, 0); }}>
                     <div className='responsive'>
                         <div className="card-body p-0">
 
-                            <img src={`${IMAGE_URL + poster_path}`} alt={title} className="card-img-top rounded-4 responsive-img" style={{ height: '290px' }} />
+                            <img src={`${IMAGE_URL + poster_path}`} alt={title || name} className="card-img-top rounded-4 responsive-img" style={{ height: '290px' }} />
 
                         </div>
                         <div className="card-footer p-1 mt-2 responsive-footer">
                             <div className="card-title">
-                                <h3 className='h6 text-light fw-normal'>{title}</h3>
+                                <h3 className='h6 text-light fw-normal'>{title || name}</h3>
                             </div>
-                            <div className="card-subtitle text-light fw-lighter">{release_date}
+                            <div className="card-subtitle text-light fw-lighter">{release_date || first_air_date}
                             </div>
                         </div>
                     </div>
@@ -107,7 +108,7 @@ const MovieCard = ({ size, title, release_date, poster_path, carousel, name, fir
 
             {carousel === true &&
 
-                <CardLink state={{ data: { ...data } }} to={`/proximamente/${title}`} className="card border-0 bg-transparent m-2" style={{ width: `${size}` }} onClick={() => { window.scroll(0, 0); }}>
+                <CardLink state={{ data: { ...data } }} to={`/movie/proximamente/${title}`} className="card border-0 bg-transparent m-2" style={{ width: `${size}` }} onClick={() => { window.scroll(0, 0); }}>
 
                     <div className="card-body p-0">
 

@@ -21,6 +21,7 @@ const movieType = cardData.original_title ? location.pathname.slice(1,6) : null
 const tvType = cardData?.original_name ? location.pathname.slice(1,3) : null
 
 
+
   return (
 
     <DinamicPageWrapper>

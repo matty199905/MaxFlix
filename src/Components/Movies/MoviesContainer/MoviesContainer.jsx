@@ -33,6 +33,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
 
 
+    console.log(series);
+
 
     useEffect(() => { getDiscoverData(currentPage ? currentPage : 1).then((data) => setMovies(data.results)) }, [currentPage])
 
@@ -55,8 +57,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
     useEffect(() => {
         setCurrentPageValue(currentPage);
-      }, [currentPage]);
-    
+    }, [currentPage]);
+
 
 
     const renderByFilter = () => {
@@ -82,9 +84,9 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
         ]
 
 
-        const movieMatch = movieGenres.find((genres) =>  genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
+        const movieMatch = movieGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
 
-        const tvMatch = seriesGenres.find((genres) =>  genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
+        const tvMatch = seriesGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
 
 
 
@@ -101,25 +103,25 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
     const handlePageSubmit = (e) => {
         e.preventDefault();
-        
-        
-        const newPage = parseInt(currentPageValue, 10);
-        if(currentPage >= 501){window.alert("Numero de páginas excedido. Pruebe menos de 500."); return setCurrentPage(1)}
-       else if (!isNaN(newPage)) {
-          try {
 
-            setCurrentPage(newPage);
-          } catch (error) {
-            console.log(error);
-            
-          }
+
+        const newPage = parseInt(currentPageValue, 10);
+        if (currentPage >= 501) { window.alert("Numero de páginas excedido. Pruebe menos de 500."); return setCurrentPage(1) }
+        else if (!isNaN(newPage)) {
+            try {
+
+                setCurrentPage(newPage);
+            } catch (error) {
+                console.log(error);
+
+            }
         } else {
-   
-          window.alert("Por favor, ingresa un número válido.");
-          return setCurrentPage(1)
+
+            window.alert("Por favor, ingresa un número válido.");
+            return setCurrentPage(1)
         }
 
-      };
+    };
 
 
 
@@ -135,7 +137,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                     <div className="container">
                         <div className="row">
                             <div className="col d-flex flex-row gap-4 mb-4">
-                                <h3 className='fs-5 fw-bold mt-2'>{title}</h3>
+                                <h3 className='fs-5 fw-bold'>{title}</h3>
                                 {
                                     (activeFilter !== null && (peliculasPage === true || seriesPage === true)) ? <button className="btn btn-outline-warning border-2 text-light" onClick={() => { dispatch(selectedFilter(activeFilter)) }}>Borrar Filtro</button> : null
                                 }
@@ -159,7 +161,7 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
 
                             movies.map((movie, index) => {
                                 if (index <= 4) {
-                                    return <MovieCard {...movie} key={movie.id} size={'220px'} type={'movie'} carousel={carousel} />
+                                    return <MovieCard {...movie} key={movie.id} size={'190px'} type={'movie'} carousel={carousel} />
                                 }
                             })
                         }
@@ -168,13 +170,13 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                             seriesHome &&
 
                             series.map((serie, index) => {
-                               
+
 
                                 if (index <= 4) {
-                                    return <MovieCard {...serie} key={serie.id} size={'220px'} type={'tv'} carousel={carousel} />
+                                    return <MovieCard {...serie} key={serie.id} size={'190px'} type={'tv'} carousel={carousel} />
                                 }
                             })
-                            
+
 
 
 
@@ -245,16 +247,19 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                                 <form onSubmit={handlePageSubmit}>
 
                                     <input className='btn text-light btn-sm border-2 btn-outline-primary p-2 ps-3 pe-3 rounded-2'
-                                    style={{maxWidth:'100px'}}
-                                    value={currentPageValue}
-                                    onChange={(e) => setCurrentPageValue(e.target.value)} 
-                                    onKeyDown={(e)=>{if(e.key === 'Enter'){setCurrentPage(currentPageValue) ;
-                                    
-                                     }}}
+                                        style={{ maxWidth: '100px' }}
+                                        value={currentPageValue}
+                                        onChange={(e) => setCurrentPageValue(e.target.value)}
+                                        onKeyDown={(e) => {
+                                            if (e.key === 'Enter') {
+                                                setCurrentPage(currentPageValue);
+
+                                            }
+                                        }}
                                     />
 
 
-                                   
+
                                 </form>
 
 
@@ -276,10 +281,10 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                             <div className='d-flex flex-column align-items-center'>
                                 <p className='text-warning'>Ingrese Número de Página </p>
                                 <p className='fs-5 fw-light'>
-                                    { peliculasPage ?
- `Resultado total de Películas: ${totalMovieResults}` : `Resultado total de Series: ${totalTvResults}`
+                                    {peliculasPage ?
+                                        `Resultado total de Películas: ${totalMovieResults}` : `Resultado total de Series: ${totalTvResults}`
                                     }
-                                   
+
                                 </p>
                             </div>
 

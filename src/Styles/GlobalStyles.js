@@ -56,8 +56,9 @@ a {
 
 .movie-container {
   justify-content: center;
-  @media (max-width: 520px) {
-justify-content: start;
+  @media (max-width: 452px) {
+    flex-flow: column wrap;
+    justify-content: flex-start;
 
   }
 }

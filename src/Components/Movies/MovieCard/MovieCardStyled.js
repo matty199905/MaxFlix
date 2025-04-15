@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const CardLink = styled(Link)`
 
-@media (max-width: 515px) {
+@media (max-width: 451px) {
     .responsive{
         margin-bottom: -20px;
         display: flex;

@@ -11,5 +11,8 @@ background: linear-gradient(#222222,black,black,black);
 p {
     opacity: 0.7;
 }
-
+@media (max-width:768px) {
+    height: 90px;
+    bottom: -90px;
+}
 `

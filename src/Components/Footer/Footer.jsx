@@ -17,12 +17,12 @@ const Footer = () => {
             </span>
 
             <p className=' h6 '>Todas tus películas en un solo lugar.</p>
-     
-
-          </div>
-          <p style={{ fontSize: '0.8rem', color: 'gray' }}>
+            <p style={{ fontSize: '10px', color: 'gray' }}>
                                                 Datos de disponibilidad en plataformas de streaming proporcionados por <a href="https://www.justwatch.com" target="_blank" rel="noopener">JustWatch</a> a través de TMDb.
                                             </p>
+
+          </div>
+
         </div>
       </div> 
     </FooterContainer>

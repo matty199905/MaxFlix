@@ -98,12 +98,12 @@ const Navbar = () => {
 
             <li className='nav-item dropdown'>
 
-              <a className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
+              <span className='nav-link dropdown-toggle text-light fw-medium ms-3 mt-4 pt-2'
                 role='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
                 id='dropdown-menu'
-              >GÉNEROS</a>
+              >GÉNEROS</span>
 
               <ul className="dropdown-menu p-2 bg-dark" aria-labelledby='dropdown-menu'>
                 <li><NavLinkStyled className="dropdown-item mb-2 bg-secondary rounded" onClick={() => dispatch(selectedFilter(seriesGenres[0]))}>Accion & Aventura</NavLinkStyled></li>

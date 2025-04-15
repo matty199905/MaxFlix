@@ -21,46 +21,58 @@ const RenderSearched = () => {
             try {
                 setLoading(true);
                 const maxPages = 100;
-        
+
+
                 const responses = await Promise.all(
                     Array.from({ length: maxPages }, async (_, i) => {
+                        const page = i + 1;
+                
                         try {
-                            const data = await getDiscoverData(i + 1);
-                            return data?.results || [];
+                            const [movieData, tvData] = await Promise.all([
+                                getDiscoverData(page).catch(error => {
+                                    console.log(`Fallo en películas`, error);
+                                    return { results: [] };
+                                }),
+                                getTvData(page).catch(error => {
+                                    console.log(`Fallo en series`, error);
+                                    return { results: [] };
+                                }),
+                            ]);
+                
+                            return [
+                                ...(movieData?.results || []),
+                                ...(tvData?.results || [])
+                            ];
                         } catch (error) {
-                            console.error(`Error en la página ${i + 1}:`, error);
+                            console.error("Error al encontrar series y peliculas", error);
                             return [];
                         }
                     })
-                ) || await Promise.all( Array.from({ length: maxPages }, async (_, i) => {
-                    try {
-                        const data = await getTvData(i + 1);
-                        return data?.results || [];
-                    } catch (error) {
-                        console.error(`Error en la página ${i + 1}:`, error);
-                        return [];
-                    }
-                }))
+                );
+ 
+                const filteredResults = responses.flat().filter(item => {
+                    const titleOrName = item?.title || item?.name;
+                    return titleOrName.toLowerCase().replace(/-/g, '').includes(value.toLowerCase());
+                });
         
-                const results = responses.flat().filter(item => item?.title?.toLowerCase().replace(/-/g, '').includes(value.toLowerCase()));
-        
-                const uniqueResults = results.reduce((acc, item) => {
-                    if (!acc.some(movie => movie.id === item.id)) {
+               
+                const uniqueResults = filteredResults.reduce((acc, item) => {
+                    if (!acc.some(existing => existing.id === item.id)) {
                         acc.push(item);
                     }
                     return acc;
                 }, []);
         
                 setResultsData(uniqueResults);
-
             } catch (error) {
-                console.error("Error al obtener datos:", error);
+                console.error("Error general al obtener los datos:", error);
             } finally {
                 setLoading(false);
             }
         };
         
         searchData();
+        
 
     }, [value]);
 
