@@ -8,21 +8,20 @@ import { Link, useLocation } from 'react-router-dom'
 
 const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...randomMovie }) => {
 
-    const location = useLocation()
-    const cardData = location?.state?.data
+    const location = useLocation();
+    const cardData = location?.state?.data;
 
-    const [videos, setVideos] = useState()
-    const [showVideo, setShowVideo] = useState(false)
-    const [nextSoon, setNextSoon] = useState()
-    const [providers, setProviders] = useState()
+    const [videos, setVideos] = useState();
+    const [showVideo, setShowVideo] = useState(false);
+    const [, setNextSoon] = useState();
+    const [providers, setProviders] = useState();
 
-
-    const link = providers?.link
 
     
-    
 
-    useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [])
+    const link = providers?.link;
+
+    useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [id])
 
     useEffect(() => {
         const nextSoonCheck = location.pathname.includes('proximamente') ? true : false;
@@ -54,7 +53,7 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
         getWatchProviders(type, cardData?.id).then((data) => setProviders(findProvider(data)))
 
-    }, [location.pathname])
+    }, [location.pathname, type, cardData?.id])
 
 
 
@@ -70,8 +69,11 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
     }
 
 
-
-    const officialTrailer = videos?.find((trailer) => { if (trailer?.name.includes('Official') || trailer?.name.includes('Trailer')) { return trailer } }) || videos?.find((trailer) => { if (!trailer?.name.includes('Trailer')) { return videos[0] } })
+const officialTrailer = videos?.find(trailer =>
+    trailer?.name.includes('Official') || trailer?.name.includes('Trailer')
+) || videos?.find(trailer =>
+    !trailer?.name.includes('Trailer')
+)
 
 
 

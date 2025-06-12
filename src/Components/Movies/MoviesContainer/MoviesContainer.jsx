@@ -28,8 +28,8 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
     const [totalMovieResults, setTotalMoviesResults] = useState()
     const [totalTvResults, setTotalTvResults] = useState()
 
-    const [nextPage, setNextPage] = useState()
-    const [prevPage, setPrevPage] = useState()
+    const [, setNextPage] = useState()
+    const [, setPrevPage] = useState()
 
 
 
@@ -84,19 +84,21 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
         ]
 
 
-        const movieMatch = movieGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
-
-        const tvMatch = seriesGenres.find((genres) => genres.find((genre) => { if (genre === activeFilter?.name) { return genres } }))
-
+        const movieMatch = movieGenres.find(([name]) => name === activeFilter?.name);
+        const tvMatch = seriesGenres.find(([name]) => name === activeFilter?.name);
 
 
-        if (movieMatch && page('/movie')) { return movies.map((movie) => { return movie.genre_ids.map((id) => { if (id === movieMatch[1]) { return <MovieCard {...movie} key={movie.id} size={'220px'} /> } }) }) }
+        if (movieMatch && page('/movie')) {
+            return movies
+                .filter(movie => movie.genre_ids.includes(movieMatch[1]))
+                .map(movie => <MovieCard {...movie} key={movie.id} size={'220px'} />);
+        }
 
-
-
-        if (tvMatch && page('/tv')) { return series.map((serie) => { return serie.genre_ids.map((id) => { if (id === tvMatch[1]) { return <MovieCard {...serie} key={serie.id} size={'220px'} /> } }) }) }
-
-
+        if (tvMatch && page('/tv')) {
+            return series
+                .filter(serie => serie.genre_ids.includes(tvMatch[1]))
+                .map(serie => <MovieCard {...serie} key={serie.id} size={'220px'} />);
+        }
     }
 
 
@@ -155,32 +157,18 @@ const MoviesContainer = ({ title, peliculasHome, seriesHome, home, peliculasPage
                     <div className="d-flex me-2 flex-row gap-3 align-items-start flex-wrap movie-container w-100">
 
 
-
                         {
                             peliculasHome &&
-
-                            movies.map((movie, index) => {
-                                if (index <= 4) {
-                                    return <MovieCard {...movie} key={movie.id} size={'190px'} type={'movie'} carousel={carousel} />
-                                }
-                            })
+                            movies.slice(0, 5).map(movie =>
+                                <MovieCard {...movie} key={movie.id} size={'190px'} type={'movie'} carousel={carousel} />
+                            )
                         }
 
                         {
                             seriesHome &&
-
-                            series.map((serie, index) => {
-
-
-                                if (index <= 4) {
-                                    return <MovieCard {...serie} key={serie.id} size={'190px'} type={'tv'} carousel={carousel} />
-                                }
-                            })
-
-
-
-
-
+                            series.slice(0, 5).map(serie =>
+                                <MovieCard {...serie} key={serie.id} size={'190px'} type={'tv'} carousel={carousel} />
+                            )
                         }
 
                         {

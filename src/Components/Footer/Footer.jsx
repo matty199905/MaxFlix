@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <FooterContainer>
 
-       <div className="container">
+      <div className="container">
         <div className="row">
           <div className="col
           justify-content-start align-items-baseline mt-3 d-flex flex-column gap-2" >
@@ -18,13 +18,13 @@ const Footer = () => {
 
             <p className=' h6 '>Todas tus películas en un solo lugar.</p>
             <p style={{ fontSize: '10px', color: 'gray' }}>
-                                                Datos de disponibilidad en plataformas de streaming proporcionados por <a href="https://www.justwatch.com" target="_blank" rel="noopener">JustWatch</a> a través de TMDb.
-                                            </p>
+              Datos de disponibilidad en plataformas de streaming proporcionados por <a href="https://www.justwatch.com" target="_blank" rel="noreferrer">JustWatch</a> a través de TMDb.
+            </p>
 
           </div>
 
         </div>
-      </div> 
+      </div>
     </FooterContainer>
   )
 }
