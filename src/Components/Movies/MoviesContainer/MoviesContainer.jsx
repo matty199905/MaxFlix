@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import MovieCard from '../MovieCard/MovieCard'
-import BtnPages from '../../UI/BtnPages'
+import BtnPages from '../../UI/Btn/BtnPages'
 import { getDiscoverData } from '../../../Axios/apiData'
 import { getTvData } from '../../../Axios/apiData'
 import { useDispatch, useSelector } from 'react-redux'

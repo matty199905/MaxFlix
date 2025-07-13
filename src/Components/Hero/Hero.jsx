@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getVideos, getWatchProviders } from '../../Axios/apiData'
 import Youtube from 'react-youtube'
 import { Link, useLocation } from 'react-router-dom'
+import Loader from '../UI/Loader/Loader'
 
 
 
@@ -13,47 +14,38 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
 
     const [videos, setVideos] = useState();
     const [showVideo, setShowVideo] = useState(false);
-    const [, setNextSoon] = useState();
     const [providers, setProviders] = useState();
+    const [loading, setLoading] = useState(true)
 
 
-    
+
 
     const link = providers?.link;
 
-    useEffect(() => { getVideos(id).then((data) => setVideos(data)) }, [id])
-
-    useEffect(() => {
-        const nextSoonCheck = location.pathname.includes('proximamente') ? true : false;
-        setNextSoon(nextSoonCheck)
-    }, [location.pathname])
-
-
-
-
-    useEffect(() => {
+useEffect(() => {
+    setLoading(true);
+    getVideos(id)
+        .then((data) => setVideos(data))
+        .finally(() => setLoading(false));
+}, [id]);
 
 
 
-        const findProvider = (data) => {
 
-            if (data?.AR || data?.ES || data?.US) {
-                return data?.AR || data?.ES || data?.US
-            }
-
-            else {
-                const array = data ? Object.entries(data).map(([key, value]) =>
-                    value) : undefined
-
-                return data ? array[0] : undefined
-            }
-
-
+   useEffect(() => {
+    const findProvider = (data) => {
+        if (data?.AR || data?.ES || data?.US) {
+            return data?.AR || data?.ES || data?.US;
+        } else {
+            const array = data ? Object.entries(data).map(([key, value]) => value) : undefined;
+            return data ? array[0] : undefined;
         }
-
-        getWatchProviders(type, cardData?.id).then((data) => setProviders(findProvider(data)))
-
-    }, [location.pathname, type, cardData?.id])
+    };
+    setLoading(true);
+    getWatchProviders(type, cardData?.id)
+        .then((data) => setProviders(findProvider(data)))
+        .finally(() => setLoading(false));
+}, [location.pathname, type, cardData?.id]);
 
 
 
@@ -69,11 +61,11 @@ const Hero = ({ img, imgDinamicPage, title, year, overview, id, home, type, ...r
     }
 
 
-const officialTrailer = videos?.find(trailer =>
-    trailer?.name.includes('Official') || trailer?.name.includes('Trailer')
-) || videos?.find(trailer =>
-    !trailer?.name.includes('Trailer')
-)
+    const officialTrailer = videos?.find(trailer =>
+        trailer?.name.includes('Official') || trailer?.name.includes('Trailer')
+    ) || videos?.find(trailer =>
+        !trailer?.name.includes('Trailer')
+    )
 
 
 
@@ -201,34 +193,48 @@ const officialTrailer = videos?.find(trailer =>
 
 
 
+
                                             <div className='d-flex gap-4' style={{ marginTop: '-30px' }}>
 
-                                                { link ?
 
-                                                    <a href={link} target='_blank' rel='noopener noreferrer' className='text-light'>
-                                                        <button className='btn btn-lg btn-primary ps-3 pe-3 mt-4 +'>
-                                                            VER MÁS
-                                                        </button>
+
+                                                {loading && !link ? (
+                                                    <button className='btn btn-lg btn-primary ps-3 pe-3 mt-4 +' disabled>
+                                                        <Loader />
+                                                    </button>
+                                                ) : !loading && link ? (
+                                                    <a
+                                                        href={link}
+                                                        target='_blank'
+                                                        rel='noopener noreferrer'
+                                                        className='btn btn-lg btn-primary ps-3 pe-3 mt-4 + text-light'
+                                                    >
+                                                        VER MÁS
                                                     </a>
-
-                                                    :
-
-                                                    <button className='btn btn-lg btn-danger ps-3 pe-3 mt-4 +'>
+                                                ) : (
+                                                    <button className='btn btn-lg btn-danger ps-3 pe-3 mt-4 +' disabled>
                                                         NO DISPONIBLE
                                                     </button>
-                                                }
+                                                )}
 
 
-                                                {
-                                                    videos ? <button onClick={() => { if (showVideo === false) { setShowVideo(true) } else { setShowVideo(false) } }} className='btn btn-lg btn-warning text-light btn-outline ps-3 pe-3 mt-4 '>
-                                                        {showVideo === true ? 'CERRAR' : 'TRAILER'}
-                                                    </button> :
 
-                                                        <button className='btn btn-lg btn-danger text-light btn-outline ps-3 pe-3 mt-4 ms-4 disabled'>
-                                                            TRAILER NO DISPONIBLE
-                                                        </button>
-
-                                                }
+                                                {videos ? (
+                                                    <button
+                                                        onClick={() => setShowVideo(!showVideo)}
+                                                        className='btn btn-lg btn-warning text-light btn-outline ps-3 pe-3 mt-4'
+                                                    >
+                                                        {showVideo ? 'CERRAR' : 'TRAILER'}
+                                                    </button>
+                                                ) : loading ? (
+                                                    <button className='btn btn-lg btn-warning text-light btn-outline ps-3 pe-3 mt-4' disabled>
+                                                        <Loader />
+                                                    </button>
+                                                ) : (
+                                                    <button className='btn btn-lg btn-danger text-light btn-outline ps-3 pe-3 mt-4 ms-4' disabled>
+                                                        TRAILER NO DISPONIBLE
+                                                    </button>
+                                                )}
                                             </div>
 
 
