@@ -135,7 +135,6 @@ useEffect(() => {
                         backgroundImage: imgDinamicPage,
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
-                        backgroundAttachment: 'fixed'
                     }}>
 
                     <div className='container-fluid overlay z-1 position-absolute top-0 left-0'

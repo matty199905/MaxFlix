@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {  useSelector } from 'react-redux'
 import { getDiscoverData, getTvData } from '../../../Axios/apiData'
 import MovieCard from '../MovieCard/MovieCard'
+import Loader from '../../UI/Loader/Loader';
 
 
 const RenderSearched = () => {
@@ -78,11 +79,11 @@ const RenderSearched = () => {
 
     const render = resultsData.map((item) => <MovieCard {...item} key={item?.id} size={'220px'} />)
 
-    if (loading) {return <div>Buscando resultados...</div>};
+    if (loading) {return <div className='d-flex flex-column gap-2 ms-3'>Buscando resultados... <Loader/></div>};
 
     if(resultsData.length) {return render}
 
-     return <div>No se han encontrado resultados...</div>;
+     return <div className='ms-3'>No se han encontrado resultados...</div>;
 };
 
 export default RenderSearched;
