@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# 🎬 Plataforma de Streaming con React.js estilizado con Bootstrap
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Aplicación de streaming de **series y películas**, desarrollada en **Create React App (CRA)** con **React.js** y **Bootstrap**.  
+La plataforma permite explorar, filtrar y visualizar tráilers de contenido mediante la **API de TMDB**.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## ✨ Funcionalidades
 
-### `npm start`
+- 🔍 **Barra de búsqueda** integrada para encontrar contenido fácilmente.  
+- 🎭 **Filtros de búsqueda** por género y categoría.  
+- 📄 **Páginas dinámicas** para cada serie o película con información detallada.  
+- 🎥 **Visualización de tráilers** mediante integración con YouTube.  
+- 🔗 **Redireccionamiento externo** a plataformas oficiales de streaming para su reproducción.  
+- 🌐 Consumo de la **API de TMDB** para datos actualizados en tiempo real.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🛠️ Tecnologías y Herramientas
 
-### `npm test`
+- **Create React App (CRA)** – Entorno de desarrollo para React.  
+- **React.js** – Librería principal para construcción de interfaces.  
+- **Bootstrap** – Framework CSS para diseño responsivo.  
+- **React Router** – Manejo de rutas dinámicas y navegación.  
+- **React Redux** – Gestión del estado global de la aplicación.  
+- **Axios** – Cliente HTTP para consumo de la API de TMDB.  
+- **Framer Motion** – Animaciones fluidas y declarativas.  
+- **React Icons** – Librería de íconos para UI.  
+- **React YouTube** – Integración de videos y tráilers desde YouTube.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 🚀 Instalación y Uso
+Clonar el repositorio:
+git clone https://github.com/usuario/MaxFlix.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Instalar dependencias:
+npm install
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Ejecutar el proyecto en modo desarrollo:
+npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⚙️ Variables de Entorno
 
-### `npm run eject`
+Crea un archivo `.env` en la raíz del proyecto y define tu clave de TMDB:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```env
+REACT_APP_TMDB_API_KEY=tu_api_key_tmdb
+```
