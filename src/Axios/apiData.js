@@ -7,7 +7,7 @@ export const getDiscoverData = async (numberPage) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+      Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -29,7 +29,7 @@ export const getTvData = async (numberPage) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+            Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -53,7 +53,7 @@ export const getUpComing = async () => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+      Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -74,7 +74,7 @@ export const getPopular = async () => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+            Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -96,7 +96,7 @@ export const getMoviesGenres = async () => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+           Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -119,7 +119,7 @@ export const getSeriesGenres = async () => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+            Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -141,7 +141,7 @@ export const getVideos = async (id) => {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+      Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
@@ -168,7 +168,7 @@ export const getWatchProviders = async (type, id) => {
   const options = {
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxOGZhNDczNzZmN2UwMjRjYTdkNjA4OGJiZDJhMDZlNCIsIm5iZiI6MTcxNTcxMDQ3My41MDg5OTk4LCJzdWIiOiI2NjQzYWEwOWQxNjc0ZGI4NDc2OTQ3YmMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.V7BOstJud_ROkkbLkz_TQTF6Ute8c673ICMZJnmgDEw'
+          Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_KEY}`
     }
   };
 
